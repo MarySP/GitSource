@@ -8,12 +8,15 @@
  * Created: Jan 13, 2018
  */
 
+create database if not exists sampledb;
+use sampledb;
+
 CREATE TABLE IF NOT EXISTS List (
     TaskID INTEGER NOT NULL PRIMARY KEY Auto_Increment,
     createdDate DATETIME NOT NULL,
     dueDate DATETIME NOT NULL,
     Title TEXT NOT NULL,
-    status TEXT NOT NULL CHECK(status IN('PENDING', 'STARTED', 'COMPLETED', 'LATE'))
+    Status TEXT NOT NULL CHECK(status IN('PENDING', 'STARTED', 'COMPLETED', 'LATE'))
 );
 
 CREATE TABLE IF NOT EXISTS Pending
@@ -50,10 +53,10 @@ insert into list values (null, "2017/11/12 5:30", "2017-11-14 11:30", "Shopping"
 insert into list values (null, "2017/07/01 5:30", "2017-07-01 6:30", "Birthday Party", 'COMPLETED');
 insert into list values (null, "2017/04/05 5:30", "2017-04-15 8:30", "Meet John", 'COMPLETED');
 
-insert into Pending (select TaskID from list where status = 'PENDING');
-insert into Started (select TaskID from list where status = 'STARTED');
-insert into Complete (select TaskID from list where status = 'COMPLETED');
-insert into Late (select TaskID from list where status = 'LATE');
+insert into Pending (select TaskID from List where Status = 'PENDING');
+insert into Started (select TaskID from List where Status = 'STARTED');
+insert into Complete (select TaskID from List where Status = 'COMPLETED');
+insert into Late (select TaskID from List where Status = 'LATE');
 
 
 

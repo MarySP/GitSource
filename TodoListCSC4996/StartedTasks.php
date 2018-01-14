@@ -9,14 +9,10 @@ and open the template in the editor.
         <link href="https://fonts.googleapis.com/css?family=PT+Serif|Rufina:700" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="Style/Style.css?" />
         <meta charset="UTF-8">
-        <title>TODO LIST</title>
+        <title>Started Tasks</title>
     </head>
     <body>
-        <?php
-        require ("config.php"); 
-        ?>
-        <h1>Welcome to CSC 4996 To-Do List</h1>
-
+        <h1>Started Tasks</h1>
         <div class="btn-group">
           <button class="button"><a href="AddTask.php">Add a Task</a></button>
           <button class="button"><a href="AllTasks.php">All Tasks</a></button>
@@ -26,6 +22,5 @@ and open the template in the editor.
           <button class="button"><a href="LateTasks.php">Late Tasks</a></button>
           
         </div>
-
     </body>
 </html>
