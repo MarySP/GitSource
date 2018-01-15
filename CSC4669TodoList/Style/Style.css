@@ -117,25 +117,7 @@ h2 {
         background-color: maroon;
     } 
     
-#markComplete {
-        
-        background-color: #66B9BF ;
-        border: #66B9BF;
-        color: white;
-        padding: 10px 30px;
-        text-align: center;
-        text-decoration: none;
-        display: list-item;
-        font-size: 18px;
-        cursor: pointer;
-        float: right;
-        font-family:"Times New Roman", Times, seriff;
-    
-    }
-    
- #markComplete:hover {
-        background-color: teal;
-    }
+
 .Itemlist {
     color: white;
     background-color: #E37222;

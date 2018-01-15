@@ -8,10 +8,10 @@
  * Created: Jan 13, 2018
  */
 
-create database if not exists sampledb;
-use sampledb;
+create database if not exists todolist;
+use todolist;
 
-CREATE TABLE IF NOT EXISTS theList (
+CREATE TABLE IF NOT EXISTS TheList (
     TaskID INTEGER NOT NULL PRIMARY KEY Auto_Increment,
     createdDate DATETIME NOT NULL,
     dueDate DATETIME NOT NULL,
@@ -51,11 +51,12 @@ insert into Thelist values (null, "2018/05/14 1:30", "2018-05-14 4:30", "Graduat
 insert into Thelist values (null, "2017/11/12 5:30", "2017-11-14 11:30", "Shopping", 'LATE');
 insert into Thelist values (null, "2017/07/01 5:30", "2017-07-01 6:30", "Birthday Party", 'COMPLETED');
 insert into Thelist values (null, "2017/04/05 5:30", "2017-04-15 8:30", "Meet John", 'COMPLETED');
+insert into Thelist values (null, "2017/08/10 7:30", "2017-08-15 8:30", "Meet Sally", 'COMPLETED');
 
-insert into Pending (select TaskID from List where theStatus = 'PENDING');
-insert into Started (select TaskID from List where theStatus = 'STARTED');
-insert into Complete (select TaskID from List where theStatus = 'COMPLETED');
-insert into Late (select TaskID from List where theStatus = 'LATE');
+insert into Pending  (select TaskID from Thelist where theStatus = 'PENDING');
+insert into Started (select TaskID from Thelist where theStatus = 'STARTED');
+insert into Complete (select TaskID from Thelist where theStatus = 'COMPLETED');
+insert into Late (select TaskID from Thelist where theStatus = 'LATE');
 
 
 

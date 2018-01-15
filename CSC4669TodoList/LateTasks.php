@@ -12,6 +12,7 @@ and open the template in the editor.
         <title>Late Tasks</title>
     </head>
     <body>
+         
         <h1>Late Tasks</h1>
         <div class="btn-group">
           <button class="button"><a href="AddTask.php">Add a Task</a></button>
@@ -22,11 +23,14 @@ and open the template in the editor.
           <button class="button"><a href="LateTasks.php">Late Tasks</a></button> 
         </div>
          <?php
-        require 'config.php';
+            require 'config.php';
+            $listItem = array();
+            global $listItem ;
             $result = $conn->query("SELECT t.TaskID, Title, DueDate FROM  late t, Thelist l "
                     . "where l.TaskID = t.TaskID and l.theStatus = 'Late'");
             echo ("<br><br><br>");
             while ($result->num_rows != 0 && $row = ( $result->fetch_assoc() )) {
+                $listItem[] = $row['TaskID'];
                 echo( "<br><div class='Itemlist'> "
                         . "<input type='checkbox' class='itemCheckBox' name='listItemArray[]' value=$row[TaskID]>"
                         . "$row[Title] - $row[DueDate]"
@@ -34,8 +38,7 @@ and open the template in the editor.
                         . "</div>" );  
             }
             mysqli_close($conn);
+            echo ("<h2>Number of Late Tasks</h2>".count($listItem));
             ?>
-        <h2></h2>
-          <input id = 'DeleteTask' type="submit" value="Delete Task" name = "meleteTask" />
     </body>
 </html>

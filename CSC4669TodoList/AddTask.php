@@ -12,12 +12,11 @@ and open the template in the editor.
         <title>Add Task</title>
     </head>
     <body>
-        
+        <form action="InsertSQL.php" method="POST">  
         <h1>Add a Task to the To-Do List</h1>
          
         <div class="btn-group">
           <div class="btn-group">
-              <form ></form>
           <button class="button"><a href="AddTask.php">Add a Task</a></button>
           <button class="button"><a href="AllTasks.php">All Tasks</a></button>
           <button class="button"><a href="PendingTasks.php">Pending Tasks</a></button>
@@ -31,40 +30,13 @@ and open the template in the editor.
           <input id ="DueDate" name ="DueDate" type='Date' />
           <h2> Status of the task: </h2> 
           <select id = 'Status' name="Status">
-              <option>Started</option>
-              <option>Pending</option>
+              <option>STARTED</option>
+              <option>PENDING</option>
           </select>
           <h2></h2>
           <input id = 'AddTask' type="submit" value="Add Task" name="Add Task" />
-        </div>
-           
-        <?php
-        require 'config.php';
-        if (isset($_POST['Add Task"'])) {
-            
-            insert();
-       
-        }
-
-    function insert() {
-        echo ("The insert function is called.");
-        
-        }
-      
-          if (isset($_POST ['Add Task'])) {
-                $new_date = date('m-d-Y', strtotime(isset($_POST['DueDate'])));
-                echo $new_date;  
-                if ( $message != "" ) {
-                    $mysqlConnection->query("INSERT INTO TheList Title VALUES ('$message')");
-                    
-                }
-                else 
-                {echo("Sorry no message");}
-           }
-        ?>  
-          
-          
-        
+          </div>
+        </form>
             
     </body>
 </html>

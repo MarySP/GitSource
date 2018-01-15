@@ -14,6 +14,7 @@ and open the template in the editor.
         <title>All Tasks</title>
     </head>
     <body>
+        <form action="AllTasks.php" method="POST"> 
         <h1>All Tasks</h1>
         <div class="btn-group">
           <button class="button"><a href="AddTask.php">Add a Task</a></button>
@@ -24,26 +25,32 @@ and open the template in the editor.
           <button class="button"><a href="LateTasks.php">Late Tasks</a></button>
         </div>
         <?php
-           
         require 'config.php';
+        if(isset($_REQUEST['DeleteTask'])){
+            foreach ($_POST['listItemArray'] AS $item) {
+                    $conn->query( "DELETE FROM TheList WHERE TaskID = $item" );
+            }
+        }
             $result = $conn->query("SELECT TaskID, Title, DueDate,theStatus FROM theList");
             echo ("<br><br><br>");
+            $listItem = array();
+            global $listItem ;
             while ($result->num_rows != 0 && $row = ( $result->fetch_assoc() )) {
-                echo( "<br><div class='Itemlist'> "
+                $listItem[] = $row['TaskID'];
+                print("<br><div class='Itemlist'> "
                         . "<input type='checkbox' class='itemCheckBox' name='listItemArray[]' value=$row[TaskID]>"
-                        . "$row[Title] - $row[DueDate] - $row[theStatus]"
+                        . "$row[Title] - $row[DueDate]- $row[theStatus]"
                         . "</input>"
-                        . "</div>" );
-                
-                
+                        . "</div>" );               
             }
-               
+            
             mysqli_close($conn);
+            echo ("<h2>Number of all Tasks</h2>".count($listItem));
             ?>
-        <h2></h2>
-          <input id = 'markComplete' type="submit" value="Mark as Complete" name = "markComplete" />
         
-          <input id = 'DeleteTask' type="submit" value="Delete Task" name = "meleteTask" />
-
+        <h2></h2>
+        
+          <input id = 'DeleteTask' type="submit" value="Delete Task" name = "DeleteTask" />
+          </form>
     </body>
 </html>

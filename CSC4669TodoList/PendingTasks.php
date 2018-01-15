@@ -22,11 +22,14 @@ and open the template in the editor.
           <button class="button"><a href="LateTasks.php">Late Tasks</a></button>
         </div>
          <?php
-        require 'config.php';
+            require 'config.php';
+            $listItem = array();
+            global $listItem ;
             $result = $conn->query("SELECT p.TaskID, Title, DueDate FROM  Pending p, Thelist l "
                     . "where l.TaskID = p.TaskID and l.theStatus = 'Pending'");
             echo ("<br><br><br>");
             while ($result->num_rows != 0 && $row = ( $result->fetch_assoc() )) {
+                $listItem[] = $row['TaskID'];
                 echo( "<br><div class='Itemlist'> "
                         . "<input type='checkbox' class='itemCheckBox' name='listItemArray[]' value=$row[TaskID]>"
                         . "$row[Title] - $row[DueDate]"
@@ -34,10 +37,8 @@ and open the template in the editor.
                         . "</div>" );  
             }
             mysqli_close($conn);
+             echo ("<h2>Number of Pending Tasks</h2>".count($listItem));
             ?>
-        <h2></h2>
-          <input id = 'markComplete' type="submit" value="Mark as Complete" name = "markComplete" />
-        
-          <input id = 'DeleteTask' type="submit" value="Delete Task" name = "meleteTask" />
+
     </body>
 </html>
